@@ -13,7 +13,10 @@ import java.util.Scanner;
  * Created by bimurto on 03-Dec-15.
  */
 public class RTreeFileMaker3d {
-    String filename = "DataSet/5d/RTREEFIL5D";
+//    String filename = "DataSet/5d/RTREEFIL5D";
+//    String filename = "DataSet/4d/RTREEFIL4D";
+    String filename = "DataSet/3d/RTREEFIL3D";
+
     RTree tree[] = new RTree[63];
     int dimension = 5;
     int maxLoad = 4;

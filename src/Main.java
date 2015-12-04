@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class Main {
     String filename = null;
     RTree tree = null;
     public Main(){
-        filename = "rtreefile14_2";
+        filename = "rtreefile14_3d";
         try {
             tree = new RTree(filename);
         } catch (RTreeException e) {
@@ -24,13 +23,13 @@ public class Main {
         //generateTreeFile();
         //readAll();
        // skylineExecute(1,-1);
-        try {
-            System.out.println(tree.nearestNeighbour2(new HyperPoint(new double[]{2.5370332312770194,-92.8838492161271})));
-        } catch (RTreeException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            System.out.println(tree.nearestNeighbour2(new HyperPoint(new double[]{2.5370332312770194,-92.8838492161271})));
+//        } catch (RTreeException e) {
+//            e.printStackTrace();
+//        }
         //skyline();
-        //skylineExecute3d(1,1);
+        skylineExecute3d(1,1);
 
     }
 
@@ -157,7 +156,7 @@ public class Main {
         HyperPoint limit = new HyperPoint(new double[]{MAX_COORDINATE_VALUE_X, MAX_COORDINATE_VALUE_Y, MAX_COORDINATE_VALUE_Z}) ;
         HyperBoundingBox searchRegion = new HyperBoundingBox(origin, limit, false);
         List<HyperBoundingBox> skylineEntries = new ArrayList<>();
-        HashSet <String> set = new HashSet<>();
+        HashSet <HyperBoundingBox> set = new HashSet<>();
         Stack<HyperPoint> todoList = new Stack<>();
 
         List<HyperBoundingBox> list = new ArrayList<>();
@@ -173,8 +172,8 @@ public class Main {
 
         HyperBoundingBox firstNN = list.get(0);
         skylineEntries.add(firstNN);
-        set.add(firstNN.toString());
-        System.out.println(firstNN);
+        set.add(firstNN);
+        //System.out.println(firstNN);
         todoList.push(new HyperPoint(new double[]{firstNN.getPMin().getCoord(0) - .0001*a, MAX_COORDINATE_VALUE_Y, MAX_COORDINATE_VALUE_Z}));
         todoList.push(new HyperPoint(new double[]{MAX_COORDINATE_VALUE_X, firstNN.getPMin().getCoord(1) - .0001*b, MAX_COORDINATE_VALUE_Z}));
         todoList.push(new HyperPoint(new double[]{MAX_COORDINATE_VALUE_X, MAX_COORDINATE_VALUE_Y , firstNN.getPMin().getCoord(2) - .0001}));
@@ -193,11 +192,11 @@ public class Main {
             }
             if (!nnl.isEmpty()) {
                 HyperBoundingBox nn = nnl.remove(0);
-                if(!set.contains(nn.toString())) {
+                if(!set.contains(nn)) {
                     skylineEntries.add(nn);
-                    set.add(nn.toString());
+                    set.add(nn);
                 }
-                System.out.println(nn);
+                //System.out.println(nn);
                 todoList.push(new HyperPoint(new double[]{nn.getPMin().getCoord(0) - .001*a, p.getCoord(1), p.getCoord(2)}));
                 todoList.push(new HyperPoint(new double[]{p.getCoord(0), nn.getPMin().getCoord(1) -.001*b, p.getCoord(2)}));
                 todoList.push(new HyperPoint(new double[]{p.getCoord(0), p.getCoord(1) , nn.getPMin().getCoord(2) -.001}));
@@ -232,7 +231,8 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-        Main m = new Main();
+        //Main m =
+        new Main();
 	}
 
 }

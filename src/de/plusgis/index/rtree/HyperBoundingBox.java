@@ -300,4 +300,10 @@ public class HyperBoundingBox {
 	public void setData(int data) {
 		this.data = data;
 	}
+
+	@Override
+	public int hashCode() {
+		String box = this.toString();
+		return box.hashCode();
+	}
 }
